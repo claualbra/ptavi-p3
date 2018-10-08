@@ -26,8 +26,8 @@ class ChistesHandler(ContentHandler):
         if name == 'chiste':
             # De esta manera tomamos los valores de los atributos
             self.calificacion = attrs.get('calificacion', "")
+            print("Calificacion: ", self.calificacion)
         elif name == 'pregunta':
-            print("hola")
             self.inPregunta = True
         elif name == 'respuesta':
             self.inRespuesta = True
@@ -37,9 +37,11 @@ class ChistesHandler(ContentHandler):
         Método que se llama al cerrar una etiqueta
         """
         if name == 'pregunta':
+            print("Pregunta: ", self.pregunta)
             self.pregunta = ""
             self.inPregunta = False
         if name == 'respuesta':
+            print("Respuesta: ", self.respuesta)
             self.respuesta = ""
             self.inRespuesta = False
 
@@ -56,7 +58,11 @@ if __name__ == "__main__":
     """
     Programa principal
     """
-    parser = make_parser()
-    cHandler = ChistesHandler()
+    parser = make_parser() #lee linea a linea y busca etiquetas, generico para xml
+    cHandler = ChistesHandler() #Hace cosas dependiendo de la etiqueta
     parser.setContentHandler(cHandler)
     parser.parse(open('chistes2.xml'))
+
+
+
+
