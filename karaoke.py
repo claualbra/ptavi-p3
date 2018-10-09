@@ -19,4 +19,10 @@ if __name__ == "__main__":
     except IndexError:
         sys.exit("Usage:python3 karaoke.py file.smil.")
     lista = cHandler.get_tags()
-    print(lista)
+    for diccionario in lista:
+        print(diccionario['etiqueta'],end="\t")
+        diccionario['etiqueta'] = 'etiqueta'
+        for atributo, valor in diccionario.items():
+           if atributo != diccionario['etiqueta'] and valor != "":
+               print(atributo+'='+'""'+valor+'""', end='\t')
+        print('\n')
