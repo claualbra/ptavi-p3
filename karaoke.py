@@ -24,5 +24,5 @@ if __name__ == "__main__":
         diccionario['etiqueta'] = 'etiqueta'
         for atributo, valor in diccionario.items():
            if atributo != diccionario['etiqueta'] and valor != "":
-               print(atributo+'='+'""'+valor+'""', end='\t')
-        print('\n')
+              print(atributo+'='+'"'+ valor+'"',end ="\t")
+        print()
