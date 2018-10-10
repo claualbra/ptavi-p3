@@ -8,9 +8,6 @@ from xml.sax import make_parser
 
 
 if __name__ == "__main__":
-    """
-    Programa principal
-    """
     parser = make_parser()
     cHandler = smallsmilhandler.SmallSmilHandler()
     parser.setContentHandler(cHandler)
@@ -25,4 +22,4 @@ if __name__ == "__main__":
         for atributo, valor in diccionario.items():
             if atributo != diccionario['etiqueta'] and valor != "":
                 print(atributo + '=' + '"' + valor + '"', end="\t")
-        print()
+        print(end="\n")
