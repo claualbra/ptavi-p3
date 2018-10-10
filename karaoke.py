@@ -20,9 +20,9 @@ if __name__ == "__main__":
         sys.exit("Usage:python3 karaoke.py file.smil.")
     lista = cHandler.get_tags()
     for diccionario in lista:
-        print(diccionario['etiqueta'],end="\t")
+        print(diccionario['etiqueta'], end="\t")
         diccionario['etiqueta'] = 'etiqueta'
         for atributo, valor in diccionario.items():
-           if atributo != diccionario['etiqueta'] and valor != "":
-              print(atributo+'='+'"'+ valor+'"',end ="\t")
+            if atributo != diccionario['etiqueta'] and valor != "":
+                print(atributo + '=' + '"' + valor + '"', end="\t")
         print()
