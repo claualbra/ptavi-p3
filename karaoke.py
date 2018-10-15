@@ -19,13 +19,14 @@ if __name__ == "__main__":
     lista = cHandler.get_tags()
     with open('karaoke.json', 'w') as file:
         json.dump(lista, file, indent=4)
+    line_et = ''
     for diccionario in lista:
-        print(diccionario['etiqueta'], end="\t")
+        line_et = diccionario['etiqueta']
         diccionario['etiqueta'] = 'etiqueta'
         for atributo, valor in diccionario.items():
             if valor.startswith('http://'):
                 file_local = valor[valor.rfind('/'):]
                 urllib.request.urlretrieve(valor, file_local[1:])
             if atributo != diccionario['etiqueta'] and valor != "":
-                print('{0}="{1}"'.format(atributo, valor), end="\t")
-        print(end="\n")
+                line_et += '\t'+'{0}="{1}"'.format(atributo, valor)
+        print(line_et)
