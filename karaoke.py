@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 # -*- coding: utf-8 -*-
 
-
+import urllib.request
 import json
 import sys
 import smallsmilhandler
@@ -17,12 +17,15 @@ if __name__ == "__main__":
     except IndexError:
         sys.exit("Usage:python3 karaoke.py file.smil.")
     lista = cHandler.get_tags()
-    with open('karaoke.json', 'w') as f:
-        json.dump(lista, f)
+    with open('karaoke.json', 'w') as file:
+        json.dump(lista, file, indent=4)
     for diccionario in lista:
         print(diccionario['etiqueta'], end="\t")
         diccionario['etiqueta'] = 'etiqueta'
         for atributo, valor in diccionario.items():
+            if valor.startswith('http://'):
+                file_local = valor[valor.rfind('/'):]
+                urllib.request.urlretrieve(valor, file_local[1:])
             if atributo != diccionario['etiqueta'] and valor != "":
-                print('{0}="{1}"'.format(atributo,valor), end="\t")
+                print('{0}="{1}"'.format(atributo, valor), end="\t")
         print(end="\n")
